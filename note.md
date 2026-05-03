@@ -2,18 +2,16 @@
 
 ---
 
-## 🟢 DAY 1 — API FOUNDATION
+## DAY 1 — API FOUNDATION
 
 ### Build
 
 * FastAPI project setup
 * Basic routes:
 
-  * `/health`
-  * `/users` (GET/POST)
-
-  OTHERS:
-    1. Push to github
+  * `/health`✅
+  * `/users` (GET/POST)✅
+  * `/Push to github✅
 
 ### Tools
 

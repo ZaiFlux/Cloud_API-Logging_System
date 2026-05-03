@@ -12,6 +12,9 @@
   * `/health`
   * `/users` (GET/POST)
 
+  OTHERS:
+    1. Push to github
+
 ### Tools
 
 * FastAPI

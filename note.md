@@ -13,15 +13,6 @@
   * `/users` (GET/POST)✅
   * `/Push to github✅
 
-### Tools
-
-* FastAPI
-* Git
-
-### Output
-
-✔ Running API locally
-
 ---
 
 ## 🟢 DAY 2 — CORE API + STRUCTURE

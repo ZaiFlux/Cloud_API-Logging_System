@@ -1,18 +1,12 @@
 from fastapi import FastAPI
+from app.routes.users import router
 
 app = FastAPI()
 
-users = []
-
+# simple test route
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
-@app.get("/users")
-def get_users():
-    return {"users": users}
-
-@app.post("/users")
-def create_user(user: dict):
-    users.append(user)
-    return {"message": "user created", "user": user}
+# include all user routes
+app.include_router(router)

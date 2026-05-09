@@ -31,20 +31,15 @@
 
 ### Add
 
-* Python logging (structured logs)
+* Python logging (structured logs)✅
 
 ### Log:
 
-* request method
-* endpoint
-* status code
-* errors
+* request method✅
+* endpoint✅
+* status code✅
+* errors✅
 
-### Output
-
-✔ `app.log` file working
-
-👉 This is your first observability layer
 
 ---
 

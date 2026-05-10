@@ -47,17 +47,14 @@
 
 ### Add
 
-* `/metrics` endpoint
+* `/metrics` endpoint✅
 
 ### Track:
 
-* total requests
-* error count
-* response time
+* total requests✅
+* error count✅
+* response time✅
 
-### Output
-
-✔ API now exposes metrics data
 
 ---
 
@@ -65,11 +62,11 @@
 
 ### Tool
 
-* Prometheus
+* Prometheus✅
 
 ### Setup
 
-* Configure Prometheus to scrape `/metrics`
+* Configure Prometheus to scrape `/metrics`✅
 
 ### Output
 

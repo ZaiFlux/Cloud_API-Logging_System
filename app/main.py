@@ -3,6 +3,8 @@ from app.routes.users import router
 from app.logger import logger
 import time
 from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_fastapi_instrumentator import Instrumentator
+
 
 app = FastAPI()
 

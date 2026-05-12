@@ -67,31 +67,23 @@
 ### Setup
 
 * Configure Prometheus to scrape `/metrics`✅
-
-### Output
-
-✔ Metrics now collected automatically
-
 ---
 
 ## 🔵 DAY 6 — GRAFANA DASHBOARD
 
 ### Tool
 
-* Grafana
+* Grafana✅
 
 ### Build
 
-* Connect Grafana → Prometheus
-* Create dashboard:
+* Connect Grafana → Prometheus✅
+* Create dashboard:✅
 
-  * requests/sec
-  * error rate
-  * latency graph
+  * requests/sec✅
+  * error rate✅
+  * latency graph✅
 
-### Output
-
-✔ Real-time monitoring dashboard
 
 ---
 

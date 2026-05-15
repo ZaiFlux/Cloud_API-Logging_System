@@ -1,6 +1,7 @@
 # Cloud API Monitoring System 🚀
 
-For this project I used FastAPI, Prometheus, Grafana besides Docker Compose to build a system that monitors backends in a way that is typical for cloud environments. It shows how people develop application programming interfaces and record events in a structured format. With this setup the system collects metrics and allows users to observe how software performs. By using those tools, the project illustrates how to deploy applications within containers.
+A cloud-style backend monitoring system built with FastAPI, Prometheus, Grafana, and Docker Compose.
+This project demonstrates API development, structured logging, metrics collection, observability, and containerized deployment.
 
 ---
 
@@ -66,55 +67,41 @@ docker compose up --build
 
 ---
 
-flowchart LR
+## 🏗️ System Architecture
 
-User[User / Client]
+```text
+FastAPI API
+     ↓
+Structured Logging + Metrics
+     ↓
+Prometheus Monitoring
+     ↓
+Grafana Dashboard Visualization
+```
 
-subgraph APP[FastAPI Application]
-direction TB
+---
 
-API[FastAPI Server]
+## 📈 Grafana Dashboards
 
-H[Health /health]
-USR[User CRUD /users]
-STORE[In-Memory Store]
-LOG[Logging System]
-MET[Metrics System]
+The Grafana dashboard includes:
 
-API --> H
-API --> USR
-API --> STORE
-API --> LOG
-API --> MET
-end
+* Requests per second
+* Error rate monitoring
+* API latency visualization
+* Real-time metrics tracking
 
-User --> API
+---
 
-API --> LOG
-API --> MET
+## 🎯 Learning Objectives
 
-API -->|exposes /metrics| PROM
-PROM -->|scrapes metrics| API
+This project was built to practice:
 
-GRAF -->|queries metrics| PROM
+* Backend API development
+* Observability concepts
+* Metrics monitoring
+* Docker containerization
+* Service orchestration
+* Cloud engineering fundamentals
 
-subgraph OBS[Observability Stack]
-direction TB
+---
 
-PROM[Prometheus]
-GRAF[Grafana]
-
-PROM --> GRAF
-end
-
-subgraph DEPLOY[Docker Compose (Runtime)]
-direction TB
-
-API_C[FastAPI Container]
-PROM_C[Prometheus Container]
-GRAF_C[Grafana Container]
-
-API --- API_C
-PROM --- PROM_C
-GRAF --- GRAF_C
-end

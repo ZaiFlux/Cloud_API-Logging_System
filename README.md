@@ -105,6 +105,7 @@ This project was built to practice:
 
 ---
 
+
 flowchart LR
 
 User[User / Client]
@@ -114,29 +115,32 @@ direction TB
 
 API[FastAPI Server]
 
-H[Health Endpoint /health]
-USR[User CRUD API /users]
-
+H[Health /health]
+USR[User CRUD /users]
 STORE[In-Memory Data Store]
-
-LOG[Logging System]
-MET[Metrics System]
 
 API --> H
 API --> USR
 API --> STORE
-API --> LOG
-API --> MET
 end
 
 subgraph OBS[Observability Stack]
 direction TB
 
-PROM[Prometheus - Metrics Collector]
-GRAF[Grafana - Dashboard Visualization]
+PROM[Prometheus]
+GRAF[Grafana]
 
 PROM --> GRAF
 end
+
+User --> API
+
+API -->|logs + metrics| OBS
+
+API -->|exposes /metrics| PROM
+PROM -->|scrapes metrics| API
+
+GRAF -->|queries metrics| PROM
 
 subgraph DEPLOY[Docker Compose Runtime]
 direction TB
@@ -145,16 +149,6 @@ API_C[FastAPI Container]
 PROM_C[Prometheus Container]
 GRAF_C[Grafana Container]
 end
-
-User --> API
-
-API --> LOG
-API --> MET
-
-API -->|exposes /metrics| PROM
-PROM -->|scrapes metrics| API
-
-GRAF -->|queries metrics| PROM
 
 API --- API_C
 PROM --- PROM_C

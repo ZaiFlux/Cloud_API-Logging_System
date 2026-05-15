@@ -105,12 +105,20 @@ This project was built to practice:
 
 ---
 
-## 🏗️ System Architecture
-
 ```mermaid
 flowchart LR
 
 User[User / Client]
+
+subgraph DEPLOY[Docker Compose Runtime]
+direction TB
+
+API_C[FastAPI Container]
+PROM_C[Prometheus Container]
+GRAF_C[Grafana Container]
+
+API_C --> PROM_C --> GRAF_C
+end
 
 subgraph APP[FastAPI Application]
 direction TB
@@ -121,9 +129,14 @@ H[Health /health]
 USR[User CRUD /users]
 STORE[In-Memory Data Store]
 
+LOG[Logging System]
+MET[Metrics System]
+
 API --> H
 API --> USR
 API --> STORE
+API --> LOG
+API --> MET
 end
 
 subgraph OBS[Observability Stack]
@@ -137,18 +150,13 @@ end
 
 User --> API
 
+API --> LOG
+API --> MET
+
 API -->|metrics| PROM
 PROM -->|scrapes| API
 
 GRAF -->|queries| PROM
-
-subgraph DEPLOY[Docker Compose Runtime]
-direction TB
-
-API_C[FastAPI Container]
-PROM_C[Prometheus Container]
-GRAF_C[Grafana Container]
-end
 
 API --- API_C
 PROM --- PROM_C

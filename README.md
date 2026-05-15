@@ -66,44 +66,6 @@ docker compose up --build
 
 ---
 
-## 🏗️ System Architecture
-
-```text
-FastAPI API
-     ↓
-Structured Logging + Metrics
-     ↓
-Prometheus Monitoring
-     ↓
-Grafana Dashboard Visualization
-```
-
----
-
-## 📈 Grafana Dashboards
-
-The Grafana dashboard includes:
-
-* Requests per second
-* Error rate monitoring
-* API latency visualization
-* Real-time metrics tracking
-
----
-
-## 🎯 Learning Objectives
-
-This project was built to practice:
-
-* Backend API development
-* Observability concepts
-* Metrics monitoring
-* Docker containerization
-* Service orchestration
-* Cloud engineering fundamentals
-
----
-
 flowchart LR
 
 User[User / Client]

@@ -105,3 +105,66 @@ This project was built to practice:
 ---
 
 
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+
+User[User / Client]
+
+subgraph APP[FastAPI Application - Docker Container]
+direction TB
+
+API[FastAPI Server]
+
+H[Health Endpoint /health]
+USR[User CRUD API /users]
+
+STORE[In-Memory Storage No Database]
+
+LOG[Logging System requests errors status codes]
+MET[Metrics System request count latency error rate]
+
+API --> H
+API --> USR
+API --> STORE
+API --> LOG
+API --> MET
+end
+
+subgraph OBS[Observability Stack - Docker Compose]
+direction TB
+
+PROM[Prometheus Metrics Collector]
+GRAF[Grafana Dashboards Visualization]
+
+PROM --> GRAF
+end
+
+User --> API
+
+API --> LOG
+API --> MET
+
+API -->|exposes /metrics endpoint| PROM
+PROM -->|scrapes metrics from FastAPI| API
+
+GRAF -->|queries Prometheus data| PROM
+
+subgraph DEPLOY[Deployment - Docker Compose]
+direction TB
+
+D1[FastAPI Container]
+D2[Prometheus Container]
+D3[Grafana Container]
+
+D2 --> D3
+end
+
+API --- D1
+PROM --- D2
+GRAF --- D3
+```
+
+

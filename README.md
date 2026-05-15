@@ -107,14 +107,8 @@ This project was built to practice:
 
 flowchart LR
 
-%% =========================
-%% USER LAYER
-%% =========================
 User[User / Client]
 
-%% =========================
-%% APPLICATION LAYER
-%% =========================
 subgraph APP[FastAPI Application]
 direction TB
 
@@ -135,9 +129,6 @@ API --> LOG
 API --> MET
 end
 
-%% =========================
-%% OBSERVABILITY LAYER
-%% =========================
 subgraph OBS[Observability Stack]
 direction TB
 
@@ -147,9 +138,6 @@ GRAF[Grafana - Dashboard Visualization]
 PROM --> GRAF
 end
 
-%% =========================
-%% DEPLOYMENT LAYER
-%% =========================
 subgraph DEPLOY[Docker Compose Runtime]
 direction TB
 
@@ -157,10 +145,6 @@ API_C[FastAPI Container]
 PROM_C[Prometheus Container]
 GRAF_C[Grafana Container]
 end
-
-%% =========================
-%% FLOW (REAL SYSTEM BEHAVIOR)
-%% =========================
 
 User --> API
 
@@ -170,13 +154,8 @@ API --> MET
 API -->|exposes /metrics| PROM
 PROM -->|scrapes metrics| API
 
-GRAF -->|queries Prometheus| PROM
-
-%% =========================
-%% CONTAINER MAPPING (NO DUPLICATION)
-%% =========================
+GRAF -->|queries metrics| PROM
 
 API --- API_C
 PROM --- PROM_C
 GRAF --- GRAF_C
-

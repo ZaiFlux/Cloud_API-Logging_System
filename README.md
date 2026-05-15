@@ -104,8 +104,6 @@ This project was built to practice:
 
 ---
 
-
-
 ## 🏗️ Architecture
 
 ```mermaid
@@ -121,10 +119,10 @@ API[FastAPI Server]
 H[Health Endpoint /health]
 USR[User CRUD API /users]
 
-STORE[In-Memory Storage No Database]
+STORE[In-Memory Data Store (Python Runtime)]
 
-LOG[Logging System requests errors status codes]
-MET[Metrics System request count latency error rate]
+LOG[Logging System]
+MET[Metrics System]
 
 API --> H
 API --> USR
@@ -133,11 +131,11 @@ API --> LOG
 API --> MET
 end
 
-subgraph OBS[Observability Stack - Docker Compose]
+subgraph OBS[Observability Stack]
 direction TB
 
-PROM[Prometheus Metrics Collector]
-GRAF[Grafana Dashboards Visualization]
+PROM[Prometheus - Metrics Collector]
+GRAF[Grafana - Visualization Dashboard]
 
 PROM --> GRAF
 end
@@ -147,12 +145,12 @@ User --> API
 API --> LOG
 API --> MET
 
-API -->|exposes /metrics endpoint| PROM
-PROM -->|scrapes metrics from FastAPI| API
+API -->|exposes /metrics| PROM
+PROM -->|scrapes metrics| API
 
-GRAF -->|queries Prometheus data| PROM
+GRAF -->|queries metrics| PROM
 
-subgraph DEPLOY[Deployment - Docker Compose]
+subgraph DEPLOY[Docker Compose Deployment]
 direction TB
 
 D1[FastAPI Container]
@@ -166,5 +164,3 @@ API --- D1
 PROM --- D2
 GRAF --- D3
 ```
-
-

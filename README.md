@@ -105,7 +105,9 @@ This project was built to practice:
 
 ---
 
+## 🏗️ System Architecture
 
+```mermaid
 flowchart LR
 
 User[User / Client]
@@ -135,12 +137,10 @@ end
 
 User --> API
 
-API -->|logs + metrics| OBS
+API -->|metrics| PROM
+PROM -->|scrapes| API
 
-API -->|exposes /metrics| PROM
-PROM -->|scrapes metrics| API
-
-GRAF -->|queries metrics| PROM
+GRAF -->|queries| PROM
 
 subgraph DEPLOY[Docker Compose Runtime]
 direction TB
@@ -153,3 +153,4 @@ end
 API --- API_C
 PROM --- PROM_C
 GRAF --- GRAF_C
+```

@@ -104,6 +104,4 @@ This project was built to practice:
 
 ---
 
-## 👨‍💻 Author
 
-Rodhel N. Condicion

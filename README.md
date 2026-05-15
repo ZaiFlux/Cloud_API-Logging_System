@@ -1,7 +1,6 @@
 # Cloud API Monitoring System 🚀
 
-A cloud-style backend monitoring system built with FastAPI, Prometheus, Grafana, and Docker Compose.
-This project demonstrates API development, structured logging, metrics collection, observability, and containerized deployment.
+For this project the developers used FastAPI, Prometheus, Grafana besides Docker Compose to build a system that monitors backends in a way that is typical for cloud environments. It shows how people develop application programming interfaces and record events in a structured format. With this setup the system collects metrics and allows users to observe how software performs. By using those tools, the project illustrates how to deploy applications within containers.
 
 ---
 

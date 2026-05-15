@@ -104,23 +104,18 @@ This project was built to practice:
 
 ---
 
-## 🏗️ Architecture
-
-```mermaid
 flowchart LR
 
 User[User / Client]
 
-subgraph APP[FastAPI Application - Docker Container]
+subgraph APP[FastAPI Application]
 direction TB
 
 API[FastAPI Server]
 
-H[Health Endpoint /health]
-USR[User CRUD API /users]
-
-STORE[In-Memory Data Store]
-
+H[Health /health]
+USR[User CRUD /users]
+STORE[In-Memory Store]
 LOG[Logging System]
 MET[Metrics System]
 
@@ -129,26 +124,6 @@ API --> USR
 API --> STORE
 API --> LOG
 API --> MET
-end
-
-subgraph OBS[Observability Stack - Docker Compose]
-direction TB
-
-PROM[Prometheus - Metrics Collector]
-GRAF[Grafana - Visualization Dashboard]
-
-PROM --> GRAF
-end
-
-subgraph DEPLOY[Docker Compose Deployment]
-direction TB
-
-D1[FastAPI Container]
-D2[Prometheus Container]
-D3[Grafana Container]
-
-D1 --> D2
-D2 --> D3
 end
 
 User --> API
@@ -161,7 +136,23 @@ PROM -->|scrapes metrics| API
 
 GRAF -->|queries metrics| PROM
 
-API --- D1
-PROM --- D2
-GRAF --- D3
-```
+subgraph OBS[Observability Stack]
+direction TB
+
+PROM[Prometheus]
+GRAF[Grafana]
+
+PROM --> GRAF
+end
+
+subgraph DEPLOY[Docker Compose (Runtime)]
+direction TB
+
+API_C[FastAPI Container]
+PROM_C[Prometheus Container]
+GRAF_C[Grafana Container]
+
+API --- API_C
+PROM --- PROM_C
+GRAF --- GRAF_C
+end

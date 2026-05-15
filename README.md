@@ -119,7 +119,7 @@ API[FastAPI Server]
 H[Health Endpoint /health]
 USR[User CRUD API /users]
 
-STORE[In-Memory Data Store (Python Runtime)]
+STORE[In-Memory Data Store]
 
 LOG[Logging System]
 MET[Metrics System]
@@ -131,13 +131,24 @@ API --> LOG
 API --> MET
 end
 
-subgraph OBS[Observability Stack]
+subgraph OBS[Observability Stack - Docker Compose]
 direction TB
 
 PROM[Prometheus - Metrics Collector]
 GRAF[Grafana - Visualization Dashboard]
 
 PROM --> GRAF
+end
+
+subgraph DEPLOY[Docker Compose Deployment]
+direction TB
+
+D1[FastAPI Container]
+D2[Prometheus Container]
+D3[Grafana Container]
+
+D1 --> D2
+D2 --> D3
 end
 
 User --> API
@@ -149,16 +160,6 @@ API -->|exposes /metrics| PROM
 PROM -->|scrapes metrics| API
 
 GRAF -->|queries metrics| PROM
-
-subgraph DEPLOY[Docker Compose Deployment]
-direction TB
-
-D1[FastAPI Container]
-D2[Prometheus Container]
-D3[Grafana Container]
-
-D2 --> D3
-end
 
 API --- D1
 PROM --- D2
